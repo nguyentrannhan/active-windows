@@ -42,3 +42,8 @@ See `sample.js` for more information.
   idleTime: '42',
 }
 ```
+
+# Build linux
+```javascript
+yarn config set nodedir ~/.cache/node-gyp/18.19.0
+```
