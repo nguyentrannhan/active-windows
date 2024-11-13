@@ -1,5 +1,5 @@
 
-if (process.platform === 'darwin' && process.arch === 'x64') {
+if (process.platform === 'darwin') {
   module.exports = {};
 } else {
   const activeWindows = require('./build/Release/wm');
