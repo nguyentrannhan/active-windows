@@ -1,8 +1,8 @@
 {
   "name": "mezon-active-windows",
-  "version": "0.1.23",
-  "author": "Yves Hoppe <contact@bytee.net> (https://bytee.net)",
-  "homepage": "https://bytee.net",
+  "version": "0.1.25",
+  "author": "Nguyen Tran Nhan <nguyentran@ncc.asia> (https://ncc.asia)",
+  "homepage": "https://ncc.asia",
   "repository": {
     "type": "git",
     "url": "https://github.com/nguyentrannhan/mezon-active-windows"
@@ -24,8 +24,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "node-addon-api": "^1.7.2",
-    "node-gyp-build": "^4.2.1"
+    "node-addon-api": "^1.7.2"
   },
   "binary": {
     "napi_versions": [
