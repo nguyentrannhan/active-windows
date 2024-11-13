@@ -23,4 +23,4 @@ Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
 	#endif
 }
 
-NODE_API_MODULE(testaddon, InitAll)
+NODE_API_MODULE(mezonaddon, InitAll)
