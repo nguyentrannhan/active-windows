@@ -328,4 +328,4 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     return exports;
 }
 
-NODE_API_MODULE(addon, Init)
+NODE_API_MODULE(mezonaddon, Init)
