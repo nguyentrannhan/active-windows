@@ -22,7 +22,8 @@
             }
          ],
          ['OS=="mac"', {
-           'sources': ["cppsrc/main.cpp", "cppsrc/macos/windowmacos.cpp"],
+           'sources': ["cppsrc/macos/macos.mm"],
+           'libraries': ["-framework AppKit", "-framework ApplicationServices"],
            'xcode_settings': {
              'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
            }
