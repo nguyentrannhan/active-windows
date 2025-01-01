@@ -7,7 +7,7 @@
 #include <thread>
 #include <fstream>
 
-Napi::Number getActiveWindow(const Napi::CallbackInfo &info) {
+Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
   Napi::Env env{info.Env()};
 
   CGWindowListOption listOptions = kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements;
@@ -32,6 +32,7 @@ Napi::Number getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
+    int handle = [windowNumber intValue]
     auto wInfo = getWindowInfo(handle);
     if (wInfo) {
       NSString *windowName = wInfo[(id)kCGWindowOwnerName];
@@ -39,7 +40,7 @@ Napi::Number getActiveWindow(const Napi::CallbackInfo &info) {
     }
 
     CFRelease(windowList);
-    
+
     return obj;
   }
 
