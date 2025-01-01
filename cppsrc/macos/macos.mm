@@ -32,7 +32,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    int handle = [windowNumber intValue]
+    int handle = [windowNumber intValue];
     auto wInfo = getWindowInfo(handle);
     if (wInfo) {
       NSString *windowName = wInfo[(id)kCGWindowOwnerName];
@@ -48,7 +48,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     CFRelease(windowList);
   }
 
-  return obj
+  return obj;
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
