@@ -25,6 +25,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
   for (NSDictionary *info in (NSArray *)windowList) {
     NSNumber *ownerPid = info[(id)kCGWindowOwnerPID];
     NSNumber *windowNumber = info[(id)kCGWindowNumber];
+    NSString *windowName = info[(id)kCGWindowOwnerName];
 
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
 
@@ -32,12 +33,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    int handle = [windowNumber intValue];
-    auto wInfo = getWindowInfo(handle);
-    if (wInfo) {
-      NSString *windowName = wInfo[(id)kCGWindowOwnerName];
-      obj.Set("windowName", std::string([windowName UTF8String]));
-    }
+    obj.Set("windowName", std::string([windowName UTF8String]));
 
     CFRelease(windowList);
 
