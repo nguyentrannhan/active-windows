@@ -5,9 +5,8 @@
  */
 const activeWindows = require('./index');
 
-console.log(process);
-
 const interval = setInterval(() => {
+  console.log('active window');
   let result = activeWindows.getActiveWindow();
 
   console.log(result);
