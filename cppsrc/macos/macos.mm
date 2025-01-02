@@ -23,13 +23,17 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("idleTime", "0");
 
   for (NSDictionary *info in (NSArray *)windowList) {
+    if (info == null) {
+      return obj
+    }
+    
     NSNumber *ownerPid    = info[(id)kCGWindowNumber];
     NSString *windowName  = info[(id)kCGWindowName];
     NSString *windowClass = info[(id)kCGWindowOwnerName];
     
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
     if (![app isActive]) {
-      continue;
+      //continue;
     }
 
     obj.Set("windowClass", std::string([windowClass UTF8String]));
