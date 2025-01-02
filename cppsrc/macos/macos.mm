@@ -35,7 +35,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 
     consoleLog.Call({ Napi::Boolean::New(env, [app isActive]) });
     if (![app isActive]) {
-      continue;
+      //continue;
     }
 
     consoleLog.Call({ Napi::String::New(env, "Hello, World.2") });
