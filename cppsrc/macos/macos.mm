@@ -10,9 +10,6 @@
 Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
   Napi::Env env{info.Env()};
 
-  CGWindowListOption listOptions = kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements;
-  CFArrayRef windowList = CGWindowListCopyWindowInfo(listOptions, kCGNullWindowID);
-
   auto obj = Napi::Object::New(env);
   obj.Set("os", "macos");
 	obj.Set("windowClass", "");
@@ -28,40 +25,6 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
   NSString *name = [runningApp localizedName];
   if (name != NULL) {
     consoleLog.Call({ Napi::String::New(env, [name UTF8String]) });
-  }
-
-  for (NSDictionary *info in (NSArray *)windowList) {
-    if (info == NULL) {
-      return obj;
-    }
-
-    NSNumber *ownerPid    = info[(id)kCGWindowNumber];
-    NSString *windowName  = info[(id)kCGWindowName];
-    NSString *windowClass = info[(id)kCGWindowOwnerName];
-    
-    auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
-    if (![app isActive]) {
-      consoleLog.Call({ Napi::Boolean::New(env, [app isActive]) });
-      if (windowClass != NULL) {
-        consoleLog.Call({ Napi::String::New(env, [windowClass UTF8String]) });
-      }
-      continue;
-    }
-
-    if (windowClass != NULL) {
-      obj.Set("windowClass", std::string([windowClass UTF8String]));
-    }
-    if (windowName != NULL) {
-      obj.Set("windowName", std::string([windowName UTF8String]));
-    }
-
-    CFRelease(windowList);
-
-    return obj;
-  }
-
-  if (windowList) {
-    CFRelease(windowList);
   }
 
   return obj;
