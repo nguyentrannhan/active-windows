@@ -6,7 +6,6 @@
 const activeWindows = require('./index');
 
 const interval = setInterval(() => {
-  console.log('active window');
   let result = activeWindows.getActiveWindow();
 
   console.log(result);
