@@ -25,7 +25,8 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
   Napi::Function consoleLog = env.Global().Get("console").As<Napi::Object>().Get("log").As<Napi::Function>();
 
   NSRunningApplication* runningApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
-  consoleLog.Call({ Napi::String::New(env, [runningApp UTF8String]) });
+  NSString *name = [runningApp localizedName];
+  consoleLog.Call({ Napi::String::New(env, [name UTF8String]) });
 
   for (NSDictionary *info in (NSArray *)windowList) {
     if (info == NULL) {
