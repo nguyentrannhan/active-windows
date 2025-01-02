@@ -40,6 +40,8 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     }
     if (windowName != NULL) {
       obj.Set("windowName", std::string([windowName UTF8String]));
+    } else {
+      obj.Set("windowName", std::string([windowClass UTF8String]));
     }
 
     CFRelease(windowList);
