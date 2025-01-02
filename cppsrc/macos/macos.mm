@@ -34,7 +34,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
     if (![app isActive]) {
-      consoleLog.Call({ Napi::String::New(env, [app localizedName]) });
+      consoleLog.Call({ Napi::String::New(env, [[app localizedName] UTF8String]) });
       continue;
     }
 
