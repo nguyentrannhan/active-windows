@@ -22,6 +22,8 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("windowPid", "0");
 	obj.Set("idleTime", "0");
 
+  Napi::Function consoleLog = env.Global().Get("console").As<Napi::Object>().Get("log").As<Napi::Function>();
+
   for (NSDictionary *info in (NSArray *)windowList) {
     NSNumber *ownerPid    = info[(id)kCGWindowNumber];
     NSString *windowName  = info[(id)kCGWindowName];
