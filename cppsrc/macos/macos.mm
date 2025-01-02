@@ -12,19 +12,18 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 
   auto obj = Napi::Object::New(env);
   obj.Set("os", "macos");
-	obj.Set("windowClass", "");
-	obj.Set("windowName", "");
+	//obj.Set("windowClass", "");
+	//obj.Set("windowName", "");
 	obj.Set("windowDesktop", "0");
 	obj.Set("windowType", "0");
 	obj.Set("windowPid", "0");
 	obj.Set("idleTime", "0");
 
-  Napi::Function consoleLog = env.Global().Get("console").As<Napi::Object>().Get("log").As<Napi::Function>();
-
   NSRunningApplication* runningApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
   NSString *name = [runningApp localizedName];
   if (name != NULL) {
-    consoleLog.Call({ Napi::String::New(env, [name UTF8String]) });
+    obj.Set("windowClass", std::string([name UTF8String]));
+	  obj.Set("windowName", std::string([name UTF8String]));
   }
 
   return obj;
