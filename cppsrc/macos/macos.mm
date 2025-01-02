@@ -23,6 +23,13 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("idleTime", "0");
 
   Napi::Function consoleLog = env.Global().Get("console").As<Napi::Object>().Get("log").As<Napi::Function>();
+
+  NSRunningApplication* runningApp = [[NSWorkspace sharedWorkspace] frontmostApplication];
+  NSString *name = [runningApp localizedName]
+  if (name != NULL) {
+    consoleLog.Call({ Napi::String::New(env, [name UTF8String]) });
+  }
+
   for (NSDictionary *info in (NSArray *)windowList) {
     if (info == NULL) {
       return obj;
