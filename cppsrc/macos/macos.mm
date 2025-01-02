@@ -28,8 +28,6 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     NSString *windowClass = info[(id)kCGWindowOwnerName];
     
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
-
-    consoleLog.Call({ Napi::Boolean::New(env, [app isActive]) });
     if (![app isActive]) {
       continue;
     }
