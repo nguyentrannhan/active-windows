@@ -23,7 +23,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("idleTime", "0");
 
   for (NSDictionary *info in (NSArray *)windowList) {
-    if (info == null) {
+    if (info == NULL) {
       return obj;
     }
 
