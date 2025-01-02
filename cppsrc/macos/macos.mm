@@ -22,6 +22,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("windowPid", "0");
 	obj.Set("idleTime", "0");
 
+  Napi::Function consoleLog = env.Global().Get("console").As<Napi::Object>().Get("log").As<Napi::Function>();
   for (NSDictionary *info in (NSArray *)windowList) {
     if (info == NULL) {
       return obj;
@@ -33,7 +34,14 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
     if (![app isActive]) {
-      //continue;
+      if (windowClass != NULL) {
+        consoleLog.Call({ Napi::String::New(env, [windowClass UTF8String]) });
+      }
+      if (windowName != NULL) {
+        consoleLog.Call({ Napi::String::New(env, [windowName UTF8String]) });
+      }
+      consoleLog.Call({ Napi::String::New(env, "Hello, World.") });
+      continue;
     }
 
     if (windowClass != NULL) {
