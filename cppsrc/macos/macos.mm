@@ -24,9 +24,9 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 
   for (NSDictionary *info in (NSArray *)windowList) {
     if (info == null) {
-      return obj
+      return obj;
     }
-    
+
     NSNumber *ownerPid    = info[(id)kCGWindowNumber];
     NSString *windowName  = info[(id)kCGWindowName];
     NSString *windowClass = info[(id)kCGWindowOwnerName];
