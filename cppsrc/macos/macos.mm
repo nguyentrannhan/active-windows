@@ -26,14 +26,16 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     NSNumber *ownerPid    = info[(id)kCGWindowNumber];
     NSString *windowName  = info[(id)kCGWindowName];
     NSString *windowClass = info[(id)kCGWindowOwnerName];
-    
 
+    consoleLog.Call({ Napi::String::New(env, "Hello, World.") });
+    
     auto app = [NSRunningApplication runningApplicationWithProcessIdentifier: [ownerPid intValue]];
 
     if (![app isActive]) {
       continue;
     }
 
+    consoleLog.Call({ Napi::String::New(env, "Hello, World.2") });
     obj.Set("windowClass", std::string([windowClass UTF8String]));
     obj.Set("windowName", std::string([windowName UTF8String]));
 
