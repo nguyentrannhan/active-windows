@@ -31,7 +31,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     NSString *windowName  = info[(id)kCGWindowName];
     NSString *windowClass = info[(id)kCGWindowOwnerName];
 
-    obj.Set("windowPid", std::string([ownerPid stringValue]));
+    obj.Set("windowPid", std::string([[ownerPid stringValue] UTF8String]));
 
     if (windowName == NULL && windowClass == NULL) {      
       continue;
