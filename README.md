@@ -1,4 +1,4 @@
-# Active Window
+# Mezon Active Window
 
 Node C++ N-API module to get information on the currently selected window and the user idle time on Linux, MacOS and Windows.
 
@@ -40,6 +40,16 @@ See `sample.js` for more information.
   windowPid: '34218',
   // Idle Time in seconds
   idleTime: '42',
+}
+
+{
+  os: 'macos',
+  windowClass: 'Visual Studio Code',
+  windowName: '',
+  windowDesktop: '0',
+  windowType: '0',
+  windowPid: '279',
+  idleTime: '0'
 }
 ```
 
