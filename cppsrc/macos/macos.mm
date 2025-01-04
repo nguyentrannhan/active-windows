@@ -27,10 +27,12 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    //NSNumber *ownerPid    = info[(id)kCGWindowNumber];
+    NSNumber *ownerPid    = info[(id)kCGWindowNumber];
     NSString *windowName  = info[(id)kCGWindowName];
     NSString *windowClass = info[(id)kCGWindowOwnerName];
-    
+
+    obj.Set("windowPid", std::string([ownerPid stringValue]));
+
     if (windowName == NULL && windowClass == NULL) {      
       continue;
     }
