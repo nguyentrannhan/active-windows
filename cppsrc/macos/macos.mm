@@ -44,9 +44,11 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       obj.Set("windowName", std::string([windowName UTF8String]));
     }
 
-    CFRelease(windowList);
+    NSLog(@"%@ - %@", windowClass, windowName);
 
-    return obj;
+    //CFRelease(windowList);
+
+    //return obj;
   }
 
   if (windowList) {
