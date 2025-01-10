@@ -24,6 +24,10 @@
          ['OS=="mac"', {
            'sources': ["cppsrc/macos/macos.mm"],
            'libraries': ["-framework AppKit", "-framework ApplicationServices"],
+           'variables': {
+            'clang_version':
+              '<!(cc -v 2>&1 | perl -ne \'print $1 if /clang version ([0-9]+(\\.[0-9]+){2,})/\')'
+            },
            'xcode_settings': {
              'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
             },
