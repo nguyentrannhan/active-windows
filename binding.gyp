@@ -26,18 +26,17 @@
            'libraries': ["-framework AppKit", "-framework ApplicationServices"],
            'xcode_settings': {
              'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
-           },
-          'conditions': [
+            },
+           'conditions': [
             # Use Perl v-strings to compare versions.
             ['clang_version and <!(perl -e \'print <(clang_version) cmp 12.0.0\')==1', {
               'xcode_settings': {
                 'OTHER_CFLAGS': ['-arch arm64'],
                 'OTHER_LDFLAGS': ['-arch arm64']
               }
-             }]
-            ]
-          }
-         ],
+            }]
+           ]
+         }],
       ],
       'include_dirs': [
            "<!@(node -p \"require('node-addon-api').include\")"
