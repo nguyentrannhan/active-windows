@@ -37,7 +37,7 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    if ([windowClass isEqual:@"Code"] || [windowClass isEqual:@"Xcode"] || [windowClass isEqual:@"Spotify"]) {
+    if ([windowClass localizedCaseInsensitiveContainsString:@"editor"] || [windowClass localizedCaseInsensitiveContainsString:@"code"] || [windowClass isEqual:@"Xcode"] || [windowClass isEqual:@"Spotify"]) {
       obj.Set("windowClass", std::string([windowClass UTF8String]));
     
       if (windowName != NULL) {
