@@ -56,8 +56,8 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    for (key NSString in codeEditor) {
-      if ([windowClass localizedCaseInsensitiveContainsString:key]) {
+    for (id NSString in codeEditor) {
+      if ([windowClass localizedCaseInsensitiveContainsString:id]) {
         obj.Set("windowClass", std::string([windowClass UTF8String]));
     
         if (windowName != NULL) {
