@@ -22,6 +22,25 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
 	obj.Set("windowPid", "0");
 	obj.Set("idleTime", "0");
 
+  NSArray *codeEditor = @[ 
+    @"code",
+    @"sublime",
+    @"atom",
+    @"notepad",
+    @"coffee",
+    @"text",
+    @"bluefish",
+    @"vim",
+    @"netbean",
+    @"emacs",
+    @"edit",
+    @"nova",
+    @"unity",
+    @"figma",
+    @"spotify",
+    @"photoshop"
+  ];
+
   for (NSDictionary *info in (NSArray *)windowList) {
     if (info == NULL) {
       continue;
@@ -37,16 +56,18 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
       continue;
     }
 
-    if ([windowClass localizedCaseInsensitiveContainsString:@"editor"] || [windowClass localizedCaseInsensitiveContainsString:@"code"] || [windowClass isEqual:@"Xcode"] || [windowClass isEqual:@"Spotify"]) {
-      obj.Set("windowClass", std::string([windowClass UTF8String]));
+    for (key NSString in codeEditor) {
+      if ([windowClass localizedCaseInsensitiveContainsString:key]) {
+        obj.Set("windowClass", std::string([windowClass UTF8String]));
     
-      if (windowName != NULL) {
-        obj.Set("windowName", std::string([windowName UTF8String]));
+        if (windowName != NULL) {
+          obj.Set("windowName", std::string([windowName UTF8String]));
+        }
+
+        CFRelease(windowList);
+
+        return obj;
       }
-
-      CFRelease(windowList);
-
-      return obj;
     }
   }
 
