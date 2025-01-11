@@ -38,7 +38,9 @@ Napi::Object getActiveWindow(const Napi::CallbackInfo &info) {
     @"unity",
     @"figma",
     @"spotify",
-    @"photoshop"
+    @"photoshop",
+    @"chrome",
+    @"safari"
   ];
 
   for (NSDictionary *info in (NSArray *)windowList) {
